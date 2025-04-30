@@ -222,7 +222,6 @@ def game_loop(pair_count):
             wait_for_restart()
             return
 
-
         unblocked = get_all_unblocked(cards)
         if not has_valid_pair(unblocked):
             draw_game_over(score, False, reason="no_moves")
