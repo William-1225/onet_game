@@ -212,15 +212,16 @@ def game_loop(pair_count):
         pygame.display.flip()
         clock.tick(60)
 
+        if all(not c.visible for c in cards):
+            draw_game_over(score, True)
+            wait_for_restart()
+            return
+
         if time_left <= 0:
             draw_game_over(score, False, reason="time_up")
             wait_for_restart()
             return
 
-        if all(not c.visible for c in cards):
-            draw_game_over(score, True)
-            wait_for_restart()
-            return
 
         unblocked = get_all_unblocked(cards)
         if not has_valid_pair(unblocked):
@@ -248,4 +249,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
